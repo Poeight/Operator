@@ -1,0 +1,10 @@
+plugin-enable:
+  - ' '
+  - '{0} &f已加载 &6{1}.'
+  - '{0} &f当前插件版本 &6{2}.'
+  - ' '
+empty-item: '{0} &c请手持物品使用!'
+enchant-not-found: '{0} &c该附魔不存在于游戏!'
+enchant-not-found-in-item: '{0} &c该附魔不存在于手持物品!'
+not-support: '{0} &c当前游戏版本不支持该操作!'
+unknown-version: '{0} &c不支持的游戏版本!'
