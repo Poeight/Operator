@@ -36,21 +36,6 @@ object DurabilityUtil {
             player.sendLang("empty-item", Operator.prefix)
             return
         }
-/**
- *      似乎不需要分版本, 先注释掉, 需要再改
-        when(val version = MinecraftVersion.majorLegacy) {
-            // 1.8 - 1.12
-            in 0 .. 11299 -> {
-                if (itemStack.type.maxDurability != 0.toShort()) itemStack.durability = itemStack.type.maxDurability
-            }
-            // >= 1.13
-            in 11300 .. Int.MAX_VALUE -> {
-                itemStack.itemMeta?.let { itemMeta ->
-                    // 修改耐久度为最大耐久度
-                }
-            }
-}
-*/
         if (itemStack.type.maxDurability != 0.toShort()) itemStack.durability = 0
     }
 

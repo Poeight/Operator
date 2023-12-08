@@ -41,6 +41,7 @@ object OperatorCommand {
     @CommandBody
     val unbreakable = subCommand {
         dynamic("boolean") {
+            suggestBoolean()
             execute<Player>() { sender, context, _ ->
                 val item = sender.inventory.itemInMainHand
                 UnbreakableUtil.setUnbreakable(sender, item, context["boolean"].toBoolean())

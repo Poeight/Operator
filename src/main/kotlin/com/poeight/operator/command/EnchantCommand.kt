@@ -1,9 +1,12 @@
 package com.poeight.operator.command
 
 import com.poeight.operator.internal.util.EnchantUtil
+import org.bukkit.Bukkit
+import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Player
 import taboolib.common.platform.command.CommandBody
 import taboolib.common.platform.command.subCommand
+import taboolib.common.platform.command.suggest
 
 /**
  *
@@ -18,6 +21,13 @@ object EnchantCommand {
     @CommandBody
     val add = subCommand {
         dynamic("enchant"){
+            suggest {
+                Enchantment.values().map {
+                    var result = it.toString().split(", ")[1]
+                    result = result.removeSuffix("]")
+                    result
+                }
+            }
             dynamic("level") {
                 execute<Player>() { sender, context, _ ->
                     val item = sender.inventory.itemInMainHand
