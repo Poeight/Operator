@@ -33,6 +33,21 @@ object EnchantUtil {
         itemStack.addUnsafeEnchantment(enchantment, level)
     }
 
+    fun removeAllEnchant(player: Player, itemStack: ItemStack) {
+        // 检查是否有物品
+        if (itemStack.type == Material.AIR) {
+            player.sendLang("empty-item", Operator.prefix)
+            return
+        }
+        if (itemStack.enchantments.isNotEmpty()) {
+            itemStack.enchantments.let {
+                for (enchantments in itemStack.enchantments) {
+                    itemStack.removeEnchantment(enchantments.key)
+                }
+            }
+        }
+    }
+
     fun removeEnchant(player: Player, itemStack: ItemStack, ench: String) {
         // 检查是否有物品
         if (itemStack.type == Material.AIR) {

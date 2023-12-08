@@ -1,7 +1,6 @@
 package com.poeight.operator.command
 
 import com.poeight.operator.internal.util.EnchantUtil
-import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Player
 import taboolib.common.platform.command.CommandBody
 import taboolib.common.platform.command.subCommand
@@ -29,6 +28,14 @@ object EnchantCommand {
     }
 
     @CommandBody
+    val clear = subCommand {
+        execute<Player>() { sender, _, _, ->
+            val item = sender.inventory.itemInMainHand
+            EnchantUtil.removeAllEnchant(sender, item)
+        }
+    }
+
+    @CommandBody
     val remove = subCommand {
     dynamic("enchant"){
             execute<Player>() { sender, context, _ ->
@@ -37,4 +44,5 @@ object EnchantCommand {
             }
         }
     }
+
 }

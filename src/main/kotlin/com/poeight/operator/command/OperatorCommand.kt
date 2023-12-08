@@ -1,5 +1,6 @@
 package com.poeight.operator.command
 
+import com.poeight.operator.internal.util.UnbreakableUtil
 import org.bukkit.entity.Player
 import taboolib.common.platform.command.*
 import taboolib.expansion.createHelper
@@ -38,10 +39,13 @@ object OperatorCommand {
     val name = NameCommand
 
     @CommandBody
-    val test = subCommand {
-        execute<Player>() { sender, _, _ ->
-            val cmd = sender.inventory.itemInMainHand.itemMeta?.customModelData
-            sender.sendMessage("cmd: $cmd")
+    val unbreakable = subCommand {
+        dynamic("boolean") {
+            execute<Player>() { sender, context, _ ->
+                val item = sender.inventory.itemInMainHand
+                UnbreakableUtil.setUnbreakable(sender, item, context["boolean"].toBoolean())
+            }
         }
     }
+
 }
